@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="LiveBetEJB">
+        <wb-resource deploy-path="/" source-path="/ejbModule" tag="defaultRootSource"/>
+        <dependent-module archiveName="LiveBetDomain.jar" deploy-path="/" handle="module:/resource/LiveBetDomain/LiveBetDomain">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="LiveBetData.jar" deploy-path="/" handle="module:/resource/LiveBetData/LiveBetData">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/LiveBetEJB/build/classes"/>
+    </wb-module>
+</project-modules>
