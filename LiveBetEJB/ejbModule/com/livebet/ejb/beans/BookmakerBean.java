@@ -1,7 +1,12 @@
 package com.livebet.ejb.beans;
 
+import java.util.logging.Logger;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
+import com.livebet.domain.User;
 import com.livebet.domain.operation.ChangeQuotesRequest;
 import com.livebet.domain.operation.ChangeQuotesResponse;
 import com.livebet.ejb.interfaces.Bookmaker;
@@ -12,10 +17,10 @@ import com.livebet.ejb.interfaces.Bookmaker;
 @Stateful(mappedName = "BookmakerBean")
 public class BookmakerBean implements Bookmaker {
 
-	String name;
-	String surname;
-	String nickname;
-	String password;
+	private final static Logger log = Logger.getLogger(BookmakerBean.class
+			.getCanonicalName());
+
+	User user;
 
 	/**
 	 * Default constructor.
@@ -24,36 +29,67 @@ public class BookmakerBean implements Bookmaker {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getName() {
-		return name;
+	@PostConstruct
+	// initialization method
+	private void init() {
+		log.info("ENTERING --> " + getClass().getCanonicalName() + ".init");
+
+		user = new User();
+
+		log.info("LEAVING <-- " + getClass().getCanonicalName() + ".init");
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	/* This method is called whenever the EJB has to be removed */
+	@Remove
+	@Override
+	public void removeBean() {
+		// TODO Auto-generated method stub
+
 	}
 
-	public String getSurname() {
-		return surname;
+	@Override
+	public User getUser() {
+		return user;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	@Override
+	public String getUsername() {
+		return getUser().getUsername();
 	}
 
-	public String getNickname() {
-		return nickname;
+	@Override
+	public void setUsername(String username) {
+		getUser().setUsername(username);
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
+	@Override
 	public String getPassword() {
-		return password;
+		return getUser().getPassword();
 	}
 
+	@Override
 	public void setPassword(String password) {
-		this.password = password;
+		getUser().setPassword(password);
+	}
+
+	@Override
+	public String getName() {
+		return getUser().getName();
+	}
+
+	@Override
+	public void setName(String name) {
+		getUser().setName(name);
+	}
+
+	@Override
+	public String getSurname() {
+		return getUser().getSurname();
+	}
+
+	@Override
+	public void setSurname(String surname) {
+		getUser().setSurname(surname);
 	}
 
 	/**

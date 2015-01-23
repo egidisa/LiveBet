@@ -16,6 +16,7 @@ import com.livebet.domain.operation.LoginRequest;
 import com.livebet.domain.operation.LoginResponse;
 import com.livebet.ejb.interfaces.UserHandler;
 import com.livebet.web.ejbclients.BettorClient;
+import com.livebet.web.ejbclients.BookmakerClient;
 
 /*
  *  Specifies that a bean is request scoped.
@@ -57,15 +58,15 @@ public class LoginController implements Serializable {
 	private static final String BETTOR_HOME_PAGE = "BETTOR_HOME";
 	private static final String BOOKMAKER_HOME_PAGE = "BOOKMAKER_HOME";
 
-	// TODO check wheter the bettorClient, once injected in another class, still
+	// TODO check whether the bettorClient, once injected in another class,
+	// still
 	// holds
-	// the reference to right bettorBean.
+	// the reference to right bettorBean/bookmakerBean EJB.
 	@Inject
 	BettorClient bettorClient;
 
-	// TODO implement BookmakerClient class
-	// @Inject
-	// BookmakerClient bookmakerClient;
+	@Inject
+	BookmakerClient bookmakerClient;
 
 	@EJB
 	UserHandler userHandlerBean;
@@ -90,8 +91,6 @@ public class LoginController implements Serializable {
 
 		LoginRequest lr = new LoginRequest();
 
-		log.info("LoginController:" + username + password);
-
 		User user = new User("", "", username, password);
 
 		lr.setUser(user);
@@ -108,24 +107,30 @@ public class LoginController implements Serializable {
 				break;
 			case BETTOR:
 				// setting data to BettorBean
-				// what if we do bettorBean.setUser(user)? Check which methods
+				// Check which methods
 				// of the EJB work,
-				// if just the ones of the interface or not.
+				// if just the ones of the interface or not. What if we do
+				// bettorBean.getUser().setUsername()?
 				bettorClient.getBettorBean().setUsername(username);
 				bettorClient.getBettorBean().setPassword(password);
-				// TODO insert a bookmakerBean.removeBean() method that removes
-				// the bean and call it here.
+				bookmakerClient.getBookmakerBean().removeBean();
 				NEXT_VIEW = BETTOR_HOME_PAGE;
 				break;
 			case BOOKMAKER:
-				// TODO setting data to BookmakerBean
-				// TODO insert a bettorBean.removeBean() method that removes
-				// the bean and call it here.
+				// setting data to BookmakerBean
+				bookmakerClient.getBookmakerBean().setUsername(username);
+				bookmakerClient.getBookmakerBean().setPassword(password);
+				bettorClient.getBettorBean().removeBean();
 				NEXT_VIEW = BOOKMAKER_HOME_PAGE;
 			}
 		}
 
 		message = lresp.getMessage();
+
+		user = bookmakerClient.getBookmakerBean().getUser();
+
+		log.info("USER DATA: " + user.getName() + "\t" + user.getPassword()
+				+ "\t" + user.getUsername());
 
 		log.info("LEAVING <-- " + getClass().getCanonicalName() + ".submit");
 		return NEXT_VIEW;
