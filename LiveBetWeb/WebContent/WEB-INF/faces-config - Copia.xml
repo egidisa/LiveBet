@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<javaee:faces-config version="2.2"
+	xmlns:javaee="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd ">
+
+
+	<javaee:navigation-rule>
+		<javaee:from-view-id>/</javaee:from-view-id>
+	</javaee:navigation-rule>
+
+
+</javaee:faces-config>

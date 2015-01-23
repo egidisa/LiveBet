@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<javaee:faces-config version="2.2"
+	xmlns:javaee="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd ">
+
+	<!-- The redirect element causes JSF to send a redirect response that asks 
+		the browser to request the new page. When the browser requests the new page, 
+		the URL shown in the browser's address field is adjusted to show the actual 
+		URL for the new page. If a navigation case does not use the redirect element, 
+		the new page is rendered as a response to the current request, which means 
+		that the URL in the browser's address field does not change and that it will 
+		contain the address of the previous page. Direct rendering can be faster 
+		than redirection. from: http://otndnld.oracle.co.jp/document/products/as10g/101300/B25221_03/web.1013/b25386/web_PageNavigation002.htm#BABCHCEA -->
+
+	<javaee:navigation-rule>
+		<javaee:from-view-id>/view/login.xhtml</javaee:from-view-id>
+		<javaee:navigation-case>
+			<javaee:from-outcome>BETTOR_HOME</javaee:from-outcome>
+			<javaee:to-view-id>/view/bettorHome.xhtml</javaee:to-view-id>
+			<javaee:redirect></javaee:redirect>
+		</javaee:navigation-case>
+	</javaee:navigation-rule>
+
+	<javaee:navigation-rule>
+		<javaee:from-view-id>/view/login.xhtml</javaee:from-view-id>
+		<javaee:navigation-case>
+			<javaee:from-outcome>BOOKMAKER_HOME</javaee:from-outcome>
+			<javaee:to-view-id>/view/bookmakerHome.xhtml</javaee:to-view-id>
+			<javaee:redirect></javaee:redirect>
+		</javaee:navigation-case>
+	</javaee:navigation-rule>
+
+</javaee:faces-config>
