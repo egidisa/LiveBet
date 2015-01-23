@@ -57,8 +57,6 @@ public class UserHandlerBean implements UserHandler {
 		String username = lr.getUser().getUsername();
 		String password = lr.getUser().getPassword();
 
-		log.info(username + password);
-
 		LoginResponse lresp = new LoginResponse();
 		lresp.setUserType(User.USER_TYPE.ANONYMOUS);
 		

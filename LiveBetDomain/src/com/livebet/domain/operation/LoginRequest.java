@@ -6,6 +6,11 @@ import com.livebet.domain.User;
 
 public class LoginRequest implements GenericRequest {
 
+	@Override
+	public String toString() {
+		return "LoginRequest [user=" + user + ", loginDate=" + loginDate + "]";
+	}
+
 	/**
 	 * 
 	 */

@@ -13,7 +13,7 @@ public class UserDAOBean implements UserDAO {
 //	private final static String SURNAME = "Pippo";
 	private final static String USERNAME = "Pippo";
 	private final static String PASSWORD = "Pippo";
-	private final static User.USER_TYPE USER_TYPE = User.USER_TYPE.BETTOR;
+	private final static User.USER_TYPE USER_TYPE = User.USER_TYPE.BOOKMAKER;
 
 	/**
 	 * Default constructor.

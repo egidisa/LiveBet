@@ -20,6 +20,13 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
+	// NEVER show a password anywhere.
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", surname=" + surname + ", username="
+				+ username + "]";
+	}
+
 	public User(String name, String surname, String username, String password){
 		this.name = name;
 		this.surname = surname;

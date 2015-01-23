@@ -3,6 +3,7 @@ package com.livebet.ejb.beans;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 import com.livebet.domain.User;
@@ -64,6 +65,14 @@ public class BettorBean implements Bettor {
 	public BetResponse bet(BetRequest br) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	/*This method is called whenever the EJB has to be removed*/
+	@Remove
+	@Override
+	public void removeBean() {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override

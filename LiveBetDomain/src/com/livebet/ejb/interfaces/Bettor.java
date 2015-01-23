@@ -9,6 +9,8 @@ import com.livebet.domain.operation.BetResponse;
 @Remote
 public interface Bettor {
 	BetResponse bet(BetRequest br);
+	
+	public void removeBean();
 
 	public User getUser();
 
