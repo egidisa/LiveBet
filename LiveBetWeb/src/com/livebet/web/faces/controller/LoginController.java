@@ -127,6 +127,7 @@ public class LoginController implements Serializable {
 
 		message = lresp.getMessage();
 
+		// TODO remove these 2 lines
 		user = bookmakerClient.getBookmakerBean().getUser();
 
 		log.info("USER DATA: " + user.getName() + "\t" + user.getPassword()
