@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="LiveBet">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="LiveBetWeb.war" deploy-path="/" handle="module:/resource/LiveBetWeb/LiveBetWeb">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="LiveBetEJB.jar" deploy-path="/" handle="module:/resource/LiveBetEJB/LiveBetEJB">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="LiveBetDomain.jar" deploy-path="/lib" handle="module:/resource/LiveBetDomain/LiveBetDomain">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="LiveBetData.jar" deploy-path="/" handle="module:/resource/LiveBetData/LiveBetData">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
