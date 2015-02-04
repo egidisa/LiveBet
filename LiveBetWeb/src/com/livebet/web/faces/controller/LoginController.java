@@ -113,25 +113,21 @@ public class LoginController implements Serializable {
 				// bettorBean.getUser().setUsername()?
 				bettorClient.getBettorBean().setUsername(username);
 				bettorClient.getBettorBean().setPassword(password);
-				bookmakerClient.getBookmakerBean().removeBean();
+				// non necessario: il bean non è stato ancora instanziato
+				// bookmakerClient.getBookmakerBean().removeBean();
 				NEXT_VIEW = BETTOR_HOME_PAGE;
 				break;
 			case BOOKMAKER:
 				// setting data to BookmakerBean
 				bookmakerClient.getBookmakerBean().setUsername(username);
 				bookmakerClient.getBookmakerBean().setPassword(password);
-				bettorClient.getBettorBean().removeBean();
+				// non necessario: il bean non è stato ancora instanziato
+				// bettorClient.getBettorBean().removeBean();
 				NEXT_VIEW = BOOKMAKER_HOME_PAGE;
 			}
 		}
 
 		message = lresp.getMessage();
-
-		// TODO remove these 2 lines
-		user = bookmakerClient.getBookmakerBean().getUser();
-
-		log.info("USER DATA: " + user.getName() + "\t" + user.getPassword()
-				+ "\t" + user.getUsername());
 
 		log.info("LEAVING <-- " + getClass().getCanonicalName() + ".submit");
 		return NEXT_VIEW;

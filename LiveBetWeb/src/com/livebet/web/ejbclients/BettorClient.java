@@ -1,6 +1,7 @@
 package com.livebet.web.ejbclients;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -35,8 +36,7 @@ import com.livebet.ejb.interfaces.Bettor;
  */
 
 /*
- * @SessionScoped
- * Specifies that a bean is session scoped.
+ * @SessionScoped Specifies that a bean is session scoped.
  * 
  * The session scope is active:
  * 
@@ -63,11 +63,18 @@ public class BettorClient implements Serializable {
 	// beans that use request scope do not have to be serializable. (from JEET
 	// doc)
 
+	private final static Logger log = Logger.getLogger(BettorClient.class
+			.getCanonicalName());
+
 	@EJB
 	Bettor bettorBean;
 
 	public BettorClient() {
-		// TODO Auto-generated constructor stub
+		log.info("ENTERING --> " + getClass().getCanonicalName()
+				+ ".CONSTRUCTOR");
+
+		log.info("LEAVING <-- " + getClass().getCanonicalName()
+				+ ".CONSTRUCTOR");
 	}
 
 	public Bettor getBettorBean() {
