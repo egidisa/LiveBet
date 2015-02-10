@@ -1,7 +1,6 @@
 package com.livebet.domain.operation;
 
-import com.livebet.domain.Quotes;
-
+@Deprecated
 public class ChangeQuotesResponse implements GenericResponse {
 
 	/**
@@ -9,14 +8,23 @@ public class ChangeQuotesResponse implements GenericResponse {
 	 */
 	private static final long serialVersionUID = -3660256240475168010L;
 
-	Quotes newQuotes;
+	private boolean result;
+	private String cause;
 
-	public Quotes getNewQuotes() {
-		return newQuotes;
+	public boolean isResult() {
+		return result;
 	}
 
-	public void setNewQuotes(Quotes newQuotes) {
-		this.newQuotes = newQuotes;
+	public void setResult(boolean result) {
+		this.result = result;
+	}
+
+	public String getCause() {
+		return cause;
+	}
+
+	public void setCause(String cause) {
+		this.cause = cause;
 	}
 
 }

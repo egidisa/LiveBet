@@ -3,12 +3,12 @@ package com.livebet.ejb.interfaces;
 import javax.ejb.Remote;
 
 import com.livebet.domain.User;
-import com.livebet.domain.operation.ChangeQuotesRequest;
-import com.livebet.domain.operation.ChangeQuotesResponse;
+import com.livebet.domain.operation.UpdateQuoteRequest;
+import com.livebet.domain.operation.UpdateQuoteResponse;
 
 @Remote
 public interface Bookmaker {
-	ChangeQuotesResponse changeQuotes(ChangeQuotesRequest cqr);
+	public UpdateQuoteResponse updateQuote(UpdateQuoteRequest uqr);
 
 	public void removeBean();
 

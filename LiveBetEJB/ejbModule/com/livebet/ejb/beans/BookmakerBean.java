@@ -3,13 +3,16 @@ package com.livebet.ejb.beans;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 import com.livebet.domain.User;
-import com.livebet.domain.operation.ChangeQuotesRequest;
-import com.livebet.domain.operation.ChangeQuotesResponse;
+import com.livebet.domain.operation.UpdateQuoteRequest;
+import com.livebet.domain.operation.UpdateQuoteResponse;
 import com.livebet.ejb.interfaces.Bookmaker;
+import com.livebet.ejb.interfaces.EventHandler;
+import com.livebet.ejb.interfaces.QuotesHandler;
 
 /**
  * Session Bean implementation class BookmakerBean
@@ -21,6 +24,12 @@ public class BookmakerBean implements Bookmaker {
 			.getCanonicalName());
 
 	User user;
+
+	@EJB
+	EventHandler eventsHandlerBean;
+
+	@EJB
+	QuotesHandler quotesHandlerBean;
 
 	/**
 	 * Default constructor.
@@ -92,12 +101,35 @@ public class BookmakerBean implements Bookmaker {
 		getUser().setSurname(surname);
 	}
 
-	/**
-	 * @see Bookmaker#changeQuotes(ChangeQuotesRequest)
-	 */
-	public ChangeQuotesResponse changeQuotes(ChangeQuotesRequest cqr) {
-		// TODO Auto-generated method stub
-		return null;
+	// /**
+	// * @see Bookmaker#changeQuotes(ChangeQuotesRequest)
+	// */
+	// public ChangeQuotesResponse changeQuotes(ChangeQuotesRequest cqr) {
+	// ChangeQuotesResponse cqResp = new ChangeQuotesResponse();
+	// cqResp.setResult(true);
+	// return cqResp;
+	// }
+
+	@Override
+	public UpdateQuoteResponse updateQuote(UpdateQuoteRequest uqr) {
+		return quotesHandlerBean.updateQuote(uqr);
+
+	}
+
+	public EventHandler getEventsHandlerBean() {
+		return eventsHandlerBean;
+	}
+
+	public void setEventsHandlerBean(EventHandler eventsHandlerBean) {
+		this.eventsHandlerBean = eventsHandlerBean;
+	}
+
+	public QuotesHandler getQuotesHandlerBean() {
+		return quotesHandlerBean;
+	}
+
+	public void setQuotesHandlerBean(QuotesHandler quotesHandlerBean) {
+		this.quotesHandlerBean = quotesHandlerBean;
 	}
 
 }

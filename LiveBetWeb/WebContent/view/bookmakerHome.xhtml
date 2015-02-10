@@ -9,6 +9,93 @@
 <ui:composition template="/resources/template.html">
 	<ui:define name="content">
 	    BOOKMAKER HOME PAGE
+	    <div>
+			Welcome
+			<h:outputText
+				value="#{bookmakerHomeController.bookmakerClient.bookmakerBean.username}"></h:outputText>
+			!
+		</div>
+		<!--<table class="ordorder-table">
+			<tr class="order-table-header">
+				<td>Event ID</td>
+				<td>Event</td>
+				<td>Final Outcome</td>
+				<td>Quotes</td>
+			</tr>
+			<c:forEach items="#{bookmakerHomeController.eventList}" var="e">
+				<tr>
+					<td><h:outputText id="#{e.id}" value="#{e.id}" /></td>
+					<td><h:outputText value="#{e.name}" /></td>
+					<td><h:outputText value="#{e.outcome}" /></td>
+				</tr>
+			</c:forEach>
+		</table>-->
+		<h:form>
+			<h:dataTable value="#{bookmakerHomeController.eventList}" var="e"
+				styleClass="event-table" headerClass="event-table-header"
+				rowClasses="event-table-odd-row,event-table-even-row">
+
+				<h:column>
+					<f:facet name="header">Event ID</f:facet>
+					#{e.id}
+			</h:column>
+
+				<h:column>
+					<f:facet name="header">Event</f:facet>
+    				#{e.name}
+    			</h:column>
+
+				<h:column>
+					<f:facet name="header">Final Outcome</f:facet>
+    				#{e.outcome}
+    			</h:column>
+
+				<h:column>
+					<f:facet name="header">Quotes</f:facet>
+					<h:dataTable value="#{e.quotes}" var="q">
+						<h:column>
+							<f:facet name="header">ID</f:facet>
+    						#{q.id}
+    				</h:column>
+						<h:column>
+							<f:facet name="header">Live Outcome</f:facet>
+    						#{q.outcome}
+    				</h:column>
+    				<h:column>
+							<f:facet name="header">Actual Value</f:facet>
+    						<h:outputLabel id="actualValue" value="#{q.value}"></h:outputLabel>
+    				</h:column>
+    				
+						<h:column>
+							<f:facet name="header">New Value</f:facet>
+							<h:inputText id="quote" value="#{bookmakerHomeController.newQuoteValue}" size="3"
+								required="true" requiredMessage="Put a value">
+							</h:inputText>
+
+						</h:column>
+						<h:column>
+							<f:facet name="header"></f:facet>
+							<h:commandButton id="quoteButton"
+								action="#{bookmakerHomeController.submitQuote}" value="Change">
+								<f:setPropertyActionListener value="#{q}"
+									target="#{requestScope.q}"></f:setPropertyActionListener>
+								<f:setPropertyActionListener value="#{e}"
+									target="#{requestScope.e}"></f:setPropertyActionListener>
+
+								<f:ajax execute="quote" render="actualValue message " />
+							</h:commandButton>
+							<br />
+						</h:column>
+						<h:column>
+							<h:outputLabel id="message"
+								value="#{bookmakerHomeController.message}"></h:outputLabel>
+						</h:column>
+					</h:dataTable>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+
 	</ui:define>
 </ui:composition>
 </html>

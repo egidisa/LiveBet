@@ -3,13 +3,15 @@ package com.livebet.ejb.beans;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 import com.livebet.domain.User;
-import com.livebet.domain.operation.BetRequest;
-import com.livebet.domain.operation.BetResponse;
+import com.livebet.domain.operation.RegisterBetRequest;
+import com.livebet.domain.operation.RegisterBetResponse;
 import com.livebet.ejb.interfaces.Bettor;
+import com.livebet.ejb.interfaces.QuotesHandler;
 
 /*
  * As its name suggests, a session bean is similar to an interactive session. A session bean
@@ -34,19 +36,23 @@ import com.livebet.ejb.interfaces.Bettor;
  * Session Bean implementation class BettorBean
  */
 @Stateful(mappedName = "BettorBean")
-// TODO cambiare in name="BettorBean"??
 public class BettorBean implements Bettor {
 
 	private final static Logger log = Logger.getLogger(BettorBean.class
 			.getCanonicalName());
 
 	User user;
+	Integer money;
+
+	@EJB
+	QuotesHandler quotesHandler;
 
 	/**
 	 * Default constructor.
 	 */
 	public BettorBean() {
 		// TODO Auto-generated constructor stub
+		money = 0;
 	}
 
 	@PostConstruct
@@ -60,19 +66,18 @@ public class BettorBean implements Bettor {
 	}
 
 	/**
-	 * @see Bettor#bet(BetRequest)
+	 * @see Bettor#bet(RegisterBetRequest)
 	 */
-	public BetResponse bet(BetRequest br) {
+	public RegisterBetResponse bet(RegisterBetRequest br) {
 		// TODO Auto-generated method stub
-		return null;
+		RegisterBetResponse bResp = quotesHandler.registerBet(br);
+		return bResp;
 	}
 
-	/*This method is called whenever the EJB has to be removed*/
+	/* This method is called whenever the EJB has to be removed */
 	@Remove
 	@Override
 	public void removeBean() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -118,6 +123,14 @@ public class BettorBean implements Bettor {
 	@Override
 	public void setSurname(String surname) {
 		getUser().setSurname(surname);
+	}
+
+	public Integer getMoney() {
+		return money;
+	}
+
+	public void setMoney(Integer money) {
+		this.money = money;
 	}
 
 }

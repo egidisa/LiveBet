@@ -1,35 +1,41 @@
 package com.livebet.domain;
 
-import com.livebet.ejb.interfaces.Bettor;
 
 public class Bet {
-	Bettor bettor;
+	User user;
 	// Match match; already present inside Quotes
-	float money;
-	Quotes quotes;
+	Integer money;
+	Quote quote;
 
-	public Bettor getBettor() {
-		return bettor;
+	public Bet(User user, Integer money, Quote quote) {
+		super();
+		this.user = user;
+		this.money = money;
+		this.quote = quote;
 	}
 
-	public void setBettor(Bettor bettor) {
-		this.bettor = bettor;
+	public User getUser() {
+		return user;
 	}
 
-	public float getMoney() {
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Integer getMoney() {
 		return money;
 	}
 
-	public void setMoney(float money) {
+	public void setMoney(Integer money) {
 		this.money = money;
 	}
 
-	public Quotes getQuotes() {
-		return quotes;
+	public Quote getQuote() {
+		return quote;
 	}
 
-	public void setQuotes(Quotes quotes) {
-		this.quotes = quotes;
+	public void setQuote(Quote quote) {
+		this.quote = quote;
 	}
 
 }

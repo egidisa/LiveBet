@@ -1,41 +1,39 @@
 package com.livebet.domain.operation;
 
-import com.livebet.domain.Match;
-import com.livebet.domain.Quotes;
-import com.livebet.ejb.interfaces.Bookmaker;
+import com.livebet.domain.Event;
+import com.livebet.domain.Quote;
 
+@Deprecated
 public class ChangeQuotesRequest implements GenericRequest {
+
+	public ChangeQuotesRequest(Event match, Quote quote) {
+		super();
+		this.match = match;
+		this.quote = quote;
+	}
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4088323548954544586L;
 
-	Bookmaker bookmaker;
-	Match match;
-	Quotes quotes;
+	Event match;
+	Quote quote;
 
-	public Bookmaker getBookmaker() {
-		return bookmaker;
-	}
-
-	public void setBookmaker(Bookmaker bm) {
-		this.bookmaker = bm;
-	}
-
-	public Match getMatch() {
+	public Event getMatch() {
 		return match;
 	}
 
-	public void setMatch(Match m) {
-		this.match = m;
+	public void setMatch(Event match) {
+		this.match = match;
 	}
 
-	public Quotes getQuotes() {
-		return quotes;
+	public Quote getQuote() {
+		return quote;
 	}
 
-	public void setQuotes(Quotes q) {
-		this.quotes = q;
+	public void setQuote(Quote quote) {
+		this.quote = quote;
 	}
+
 }

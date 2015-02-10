@@ -32,7 +32,7 @@ body {
 }
 
 #footer {
-	position: fixed;
+	/*position: fixed;*/
 	bottom: 0px;
 	padding: 20px;
 	width: 100%;
@@ -46,4 +46,29 @@ body {
 	text-decoration: none;
 	-webkit-transition: border 2s, color 2s, -webkit-transform 2s;
 	transition: border 2s, color 2s, transform 2s;
+}
+
+<!-- Section BettorHome style definitions-->
+
+.event-table{   
+	border-collapse:collapse;
+}
+ 
+.event-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	padding:16px;
+}
+ 
+.event-table-odd-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+ 
+.event-table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;
 }

@@ -1,7 +1,7 @@
 package com.livebet.domain;
 
 import java.util.concurrent.atomic.AtomicInteger;
-
+@Deprecated
 public class Quotes {
 	public enum ResultsToQuotes {
 		TEAM1_WIN(0),
@@ -24,14 +24,14 @@ public class Quotes {
 		}
 	}
 
-	Match match;
-
-	public Match getMatch() {
-		return match;
-	}
-
-	public void setMatch(Match match) {
-		this.match = match;
-	}
+//	Match match;
+//
+//	public Match getMatch() {
+//		return match;
+//	}
+//
+//	public void setMatch(Match match) {
+//		this.match = match;
+//	}
 
 }

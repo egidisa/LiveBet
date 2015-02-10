@@ -3,13 +3,13 @@ package com.livebet.ejb.interfaces;
 import javax.ejb.Remote;
 
 import com.livebet.domain.User;
-import com.livebet.domain.operation.BetRequest;
-import com.livebet.domain.operation.BetResponse;
+import com.livebet.domain.operation.RegisterBetRequest;
+import com.livebet.domain.operation.RegisterBetResponse;
 
 @Remote
 public interface Bettor {
-	BetResponse bet(BetRequest br);
-	
+	RegisterBetResponse bet(RegisterBetRequest br);
+
 	public void removeBean();
 
 	public User getUser();
@@ -29,4 +29,8 @@ public interface Bettor {
 	public String getPassword();
 
 	public void setPassword(String password);
+
+	public Integer getMoney();
+
+	public void setMoney(Integer money);
 }

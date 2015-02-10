@@ -60,6 +60,7 @@ public class UserHandlerBean implements UserHandler {
 		LoginResponse lresp = new LoginResponse();
 		lresp.setUserType(User.USER_TYPE.ANONYMOUS);
 		
+		// TODO change with call to DB
 		boolean authenticationResult = userDAOBean.authenticate(username,
 				password);
 		lresp.setResult(authenticationResult);
