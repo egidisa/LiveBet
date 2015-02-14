@@ -8,27 +8,14 @@
 
 <ui:composition template="/resources/template.html">
 	<ui:define name="content">
+	<meta http-equiv="refresh" content="10" >  
+        </meta>
 		<div>
 			Welcome
 			<h:outputText
 				value="#{bettorHomeController.bettorClient.bettorBean.username}"></h:outputText>
 			!
 		</div>
-		<!--<table class="ordorder-table">
-			<tr class="order-table-header">
-				<td>Event ID</td>
-				<td>Event</td>
-				<td>Final Outcome</td>
-				<td>Quotes</td>
-			</tr>
-			<c:forEach items="#{bettorHomeController.eventList}" var="e">
-				<tr>
-					<td><h:outputText id="#{e.id}" value="#{e.id}" /></td>
-					<td><h:outputText value="#{e.name}" /></td>
-					<td><h:outputText value="#{e.outcome}" /></td>
-				</tr>
-			</c:forEach>
-		</table>-->
 		<h:form>
 			<h:dataTable value="#{bettorHomeController.eventList}" var="e"
 				styleClass="event-table" headerClass="event-table-header"

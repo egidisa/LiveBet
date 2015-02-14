@@ -5,36 +5,38 @@
  */
 package com.livebet.domain.operation;
 
+import com.livebet.domain.Quote;
+
 /**
  * 
  * @author p3 Edit: Alessio
  */
 public class RegisterBetRequest implements BusinessRequest {
-	private Integer IDQuote;
-	private Integer IDUsername;
+	private Quote quote;
+	private Integer IDUser;
 	private Integer money;
 
-	public RegisterBetRequest(Integer iDQuote, Integer iDUsername, Integer money) {
+	public RegisterBetRequest(Quote q, Integer iDUsername, Integer money) {
 		super();
-		IDQuote = iDQuote;
-		IDUsername = iDUsername;
+		quote = q;
+		IDUser = iDUsername;
 		this.money = money;
 	}
 
-	public Integer getIDQuote() {
-		return IDQuote;
+	public Quote getQuote() {
+		return quote;
 	}
 
-	public void setIDQuote(Integer IDQuote) {
-		this.IDQuote = IDQuote;
+	public void setQuote(Quote quote) {
+		this.quote = quote;
 	}
 
-	public Integer getIDUsername() {
-		return IDUsername;
+	public Integer getIDUser() {
+		return IDUser;
 	}
 
-	public void setIDUsername(Integer IDUsername) {
-		this.IDUsername = IDUsername;
+	public void setIDUser(Integer IDUsername) {
+		this.IDUser = IDUsername;
 	}
 
 	public Integer getMoney() {
@@ -47,8 +49,8 @@ public class RegisterBetRequest implements BusinessRequest {
 
 	@Override
 	public String toString() {
-		return "RegisterBetRequest{" + "IDQuote=" + IDQuote + ", IDUsername="
-				+ IDUsername + ", money=" + money + '}';
+		return "RegisterBetRequest{" + "Quote=" + quote + ", IDUsername="
+				+ IDUser + ", money=" + money + '}';
 	}
 
 }

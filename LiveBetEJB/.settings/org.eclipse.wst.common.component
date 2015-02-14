@@ -7,6 +7,6 @@
         <dependent-module archiveName="LiveBetData.jar" deploy-path="/" handle="module:/resource/LiveBetData/LiveBetData">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <property name="java-output-path" value="/LiveBetEJB/build/classes"/>
+        <property name="java-output-path" value="/LiveBetEJB/bin"/>
     </wb-module>
 </project-modules>

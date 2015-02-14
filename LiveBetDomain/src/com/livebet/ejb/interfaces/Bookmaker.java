@@ -14,13 +14,7 @@ public interface Bookmaker {
 
 	public User getUser();
 
-	public String getName();
-
-	public void setName(String name);
-
-	public String getSurname();
-
-	public void setSurname(String surname);
+	public void setUser(User user);
 
 	public String getUsername();
 

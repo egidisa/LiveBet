@@ -43,7 +43,7 @@ public class BookmakerBean implements Bookmaker {
 	private void init() {
 		log.info("ENTERING --> " + getClass().getCanonicalName() + ".init");
 
-		user = new User();
+		user = new User("","");
 
 		log.info("LEAVING <-- " + getClass().getCanonicalName() + ".init");
 	}
@@ -61,6 +61,11 @@ public class BookmakerBean implements Bookmaker {
 		return user;
 	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	
 	@Override
 	public String getUsername() {
 		return getUser().getUsername();
@@ -79,26 +84,6 @@ public class BookmakerBean implements Bookmaker {
 	@Override
 	public void setPassword(String password) {
 		getUser().setPassword(password);
-	}
-
-	@Override
-	public String getName() {
-		return getUser().getName();
-	}
-
-	@Override
-	public void setName(String name) {
-		getUser().setName(name);
-	}
-
-	@Override
-	public String getSurname() {
-		return getUser().getSurname();
-	}
-
-	@Override
-	public void setSurname(String surname) {
-		getUser().setSurname(surname);
 	}
 
 	// /**

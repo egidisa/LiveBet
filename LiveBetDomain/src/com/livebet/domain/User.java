@@ -10,46 +10,34 @@ public class User {
 	}
 
 	Integer id;
-	String name;
-	String surname;
 	String username;
 	String password;
+	String userType;
 
-	/**
-	 * Default constructor.
-	 */
-	public User() {
-		// TODO Auto-generated constructor stub
+	public String getUserType() {
+		return userType;
 	}
 
-	// NEVER show a password anywhere.
-	@Override
-	public String toString() {
-		return "User [name=" + name + ", surname=" + surname + ", username="
-				+ username + "]";
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 
-	public User(String name, String surname, String username, String password) {
-		this.name = name;
-		this.surname = surname;
+	public User(String username, String password) {
+		super();
 		this.username = username;
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + "]";
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public User(Integer id, String username, String password, String userType) {
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.userType = userType;
 	}
 
 	public String getUsername() {

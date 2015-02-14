@@ -14,11 +14,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class UpdateQuoteRequest implements BusinessRequest {
 	private Integer IDQuote;
 	private AtomicInteger newNumericQuote;
+	private AtomicInteger version;
 
-	public UpdateQuoteRequest(Integer iDQuote, AtomicInteger newNumericQuote) {
+	public UpdateQuoteRequest(Integer iDQuote, AtomicInteger newNumericQuote, AtomicInteger version) {
 		super();
 		IDQuote = iDQuote;
 		this.newNumericQuote = newNumericQuote;
+		this.version = version;
 	}
 
 	public Integer getIDQuote() {
@@ -41,6 +43,14 @@ public class UpdateQuoteRequest implements BusinessRequest {
 	public String toString() {
 		return "UpdateQuoteRequest{" + "IDQuote=" + IDQuote
 				+ ", newNumericQuote=" + newNumericQuote + '}';
+	}
+
+	public AtomicInteger getVersion() {
+		return version;
+	}
+
+	public void setVersion(AtomicInteger version) {
+		this.version = version;
 	}
 
 }

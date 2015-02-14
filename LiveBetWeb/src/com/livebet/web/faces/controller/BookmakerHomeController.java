@@ -52,7 +52,7 @@ public class BookmakerHomeController implements Serializable {
 
 		log.info("USER = " + bookmakerClient.getBookmakerBean().getUsername());
 
-		if (bookmakerClient.getBookmakerBean().getUsername() == null) {
+		if (bookmakerClient.getBookmakerBean().getUsername().compareTo("") == 0) {
 			try {
 				FacesContext.getCurrentInstance().getExternalContext()
 						.dispatch("/view/login.xhtml");
@@ -95,17 +95,19 @@ public class BookmakerHomeController implements Serializable {
 		}
 		log.info("QuoteValue = " + newQuoteValue);
 		UpdateQuoteRequest uqr = new UpdateQuoteRequest(q.getId(),
-				new AtomicInteger(newQuoteValue));
+				new AtomicInteger(newQuoteValue), q.getVersion());
 		UpdateQuoteResponse changeQuotesResponse = bookmakerClient
 				.getBookmakerBean().updateQuote(uqr);
 
-		q.setValue(new AtomicInteger(newQuoteValue));
+//		q.setValue(new AtomicInteger(newQuoteValue));
 
 		if (!changeQuotesResponse.isResult())
 			message = "QuoteUpdate rejected: "
 					+ changeQuotesResponse.getCause();
-		else
+		else {
 			message = "Quote Update received!";
+			eventList = eventHandler.getEvents();
+		}
 		return "";
 	}
 

@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import com.livebet.data.ejb.interfaces.RequestDAO;
 import com.livebet.data.ejb.interfaces.UserDAO;
 import com.livebet.domain.User;
 import com.livebet.domain.operation.LoginRequest;
@@ -30,6 +31,9 @@ public class UserHandlerBean implements UserHandler {
 
 	@EJB
 	UserDAO userDAOBean;
+
+	@EJB
+	RequestDAO requestBean;
 
 	/**
 	 * Default constructor.
@@ -58,22 +62,18 @@ public class UserHandlerBean implements UserHandler {
 		String password = lr.getUser().getPassword();
 
 		LoginResponse lresp = new LoginResponse();
-		lresp.setUserType(User.USER_TYPE.ANONYMOUS);
-		
-		// TODO change with call to DB
-		boolean authenticationResult = userDAOBean.authenticate(username,
+		lresp.setUser(null);
+
+		boolean authenticationResult = requestBean.authenticate(username,
 				password);
 		lresp.setResult(authenticationResult);
 		if (authenticationResult) {
 			lresp.setMessage(MSG_LOGIN_OK);
-			if (userDAOBean.isBettor(username))
-				lresp.setUserType(User.USER_TYPE.BETTOR);
-			else
-				if(userDAOBean.isBookmaker(username))
-					lresp.setUserType(User.USER_TYPE.BOOKMAKER);
-		} else 
+			lresp.setUser(requestBean.getUser(username));
+			log.info("USER " + lresp.getUser());
+		} else
 			lresp.setMessage(MSG_LOGIN_KO);
-		
+
 		log.info("LEAVING <-- " + getClass().getCanonicalName() + ".login");
 		return lresp;
 	}

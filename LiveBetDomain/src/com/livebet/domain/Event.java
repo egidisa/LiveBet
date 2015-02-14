@@ -9,6 +9,14 @@ public class Event {
 	String outcome;
 	List<Quote> quotes;
 
+	public Event(Integer id, String name, String outcome, List<Quote> quotes) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.outcome = outcome;
+		this.quotes = quotes;
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -42,6 +42,7 @@ public class BettorBean implements Bettor {
 			.getCanonicalName());
 
 	User user;
+	
 	Integer money;
 
 	@EJB
@@ -60,7 +61,7 @@ public class BettorBean implements Bettor {
 	private void init() {
 		log.info("ENTERING --> " + getClass().getCanonicalName() + ".init");
 
-		user = new User();
+		user = new User("","");
 
 		log.info("LEAVING <-- " + getClass().getCanonicalName() + ".init");
 	}
@@ -84,6 +85,11 @@ public class BettorBean implements Bettor {
 	public User getUser() {
 		return user;
 	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 
 	@Override
 	public String getUsername() {
@@ -103,26 +109,6 @@ public class BettorBean implements Bettor {
 	@Override
 	public void setPassword(String password) {
 		getUser().setPassword(password);
-	}
-
-	@Override
-	public String getName() {
-		return getUser().getName();
-	}
-
-	@Override
-	public void setName(String name) {
-		getUser().setName(name);
-	}
-
-	@Override
-	public String getSurname() {
-		return getUser().getSurname();
-	}
-
-	@Override
-	public void setSurname(String surname) {
-		getUser().setSurname(surname);
 	}
 
 	public Integer getMoney() {

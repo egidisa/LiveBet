@@ -1,11 +1,13 @@
 package com.livebet.web.ejbclients;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 
+import com.livebet.domain.Event;
 import com.livebet.ejb.interfaces.Bettor;
 
 /**
@@ -68,6 +70,16 @@ public class BettorClient implements Serializable {
 
 	@EJB
 	Bettor bettorBean;
+
+	List<Event> eventList = null;
+	
+	public List<Event> getEventList() {
+		return eventList;
+	}
+
+	public void setEventList(List<Event> eventList) {
+		this.eventList = eventList;
+	}
 
 	public BettorClient() {
 		log.info("ENTERING --> " + getClass().getCanonicalName()

@@ -58,10 +58,6 @@ public class LoginController implements Serializable {
 	private static final String BETTOR_HOME_PAGE = "BETTOR_HOME";
 	private static final String BOOKMAKER_HOME_PAGE = "BOOKMAKER_HOME";
 
-	// TODO check whether the bettorClient, once injected in another class,
-	// still
-	// holds
-	// the reference to right bettorBean/bookmakerBean EJB.
 	@Inject
 	BettorClient bettorClient;
 
@@ -91,7 +87,7 @@ public class LoginController implements Serializable {
 
 		LoginRequest lr = new LoginRequest();
 
-		User user = new User("", "", username, password);
+		User user = new User(username, password);
 
 		lr.setUser(user);
 		lr.setLoginDate(new Date(System.currentTimeMillis()));
@@ -100,32 +96,18 @@ public class LoginController implements Serializable {
 		if (lresp.isResult()) {
 			// here is where the appropriate EJB has to be chosen, so that
 			// only the right one will be left in memory
-			log.info("USER_TYPE = " + lresp.getUserType());
-			switch (lresp.getUserType()) {
-			case ANONYMOUS:
-				NEXT_VIEW = CURRENT_VIEW;
-				break;
-			case BETTOR:
-				// setting data to BettorBean
-				// Check which methods
-				// of the EJB work,
-				// if just the ones of the interface or not. What if we do
-				// bettorBean.getUser().setUsername()?
-				bettorClient.getBettorBean().setUsername(username);
-				bettorClient.getBettorBean().setPassword(password);
-				// non necessario: il bean non è stato ancora instanziato
-				// bookmakerClient.getBookmakerBean().removeBean();
+			log.info("USER_TYPE = " + lresp.getUser().getUserType());
+			switch (lresp.getUser().getUserType()) {
+			case "BETTOR":
+				bettorClient.getBettorBean().setUser(lresp.getUser());
 				NEXT_VIEW = BETTOR_HOME_PAGE;
 				break;
-			case BOOKMAKER:
-				// setting data to BookmakerBean
-				bookmakerClient.getBookmakerBean().setUsername(username);
-				bookmakerClient.getBookmakerBean().setPassword(password);
-				// non necessario: il bean non è stato ancora instanziato
-				// bettorClient.getBettorBean().removeBean();
+			case "BOOKMAKER":
+				bookmakerClient.getBookmakerBean().setUser(lresp.getUser());
 				NEXT_VIEW = BOOKMAKER_HOME_PAGE;
 			}
-		}
+		} else
+			NEXT_VIEW = CURRENT_VIEW;
 
 		message = lresp.getMessage();
 

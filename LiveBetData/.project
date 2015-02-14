@@ -3,6 +3,7 @@
 	<name>LiveBetData</name>
 	<comment></comment>
 	<projects>
+		<project>LiveBetDomain</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
